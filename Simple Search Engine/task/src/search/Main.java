@@ -48,18 +48,17 @@ class QueryNone implements QueryMethod {
     @Override
     public Set<Integer> fetch(HashMap<String, HashSet<Integer>> hashMap, String[] entries) {
         Set<Integer> index = new LinkedHashSet<>();
-        Set<Integer> temp = new LinkedHashSet<>();
-
-        for (String entry : entries) {
-            if (hashMap.containsKey(entry)) {
-                temp.addAll(hashMap.get(entry));
-            }
-        }
 
         for (HashSet<Integer> set : hashMap.values()) {
             index.addAll(set);
         }
-        index.removeAll(temp);
+
+        for (String entry : entries) {
+            if (hashMap.containsKey(entry)) {
+                index.removeAll(hashMap.get(entry));
+            }
+        }
+
         return index;
     }
 }
