@@ -58,7 +58,6 @@ class QueryNone implements QueryMethod {
                 index.removeAll(hashMap.get(entry));
             }
         }
-
         return index;
     }
 }
